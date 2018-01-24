@@ -23,6 +23,7 @@ static NSString *const MagicURLProtocolKey = @"MagicURLProtocol-already-handled"
 
 - (void)dealloc{
     self.recData = nil;
+    self.connection = nil;
 }
 
 /**
@@ -52,7 +53,7 @@ static NSString *const MagicURLProtocolKey = @"MagicURLProtocol-already-handled"
 // (此处使用NSURLConnection)
 - (void)startLoading{
     NSMutableURLRequest *newRequest = [self cloneRequest:self.request];
-    //NSString *urlString = newRequest.URL.absoluteString;
+    NSString *urlString = newRequest.URL.absoluteString;
     //NSLog(@"######截获WebP url:%@",urlString);
     [NSURLProtocol setProperty:@YES forKey:MagicURLProtocolKey inRequest:newRequest];
     [self sendRequest:newRequest];
